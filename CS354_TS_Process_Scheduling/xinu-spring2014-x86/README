@@ -1,0 +1,16 @@
+Name: Kalena Galarnyk
+Lab 1: Getting Aquainted with Xinu
+CS354 Spring 2014
+
+Files Edited:
+	Makerules			to add host2netl_asm.S, and all c files...
+	main.c 				to test and run stuff
+	
+Files Created:
+	host2netl_asm.S		converts parameter from host byte order to network byte order
+	printsegaddress.c	prints address end of stack, data, bss
+	printprocstck.c		prints processes and their attributes
+	myprogA.c			contains myfuncA
+	
+
+NOTE: all code should be working correctly
