@@ -59,13 +59,14 @@ int main(int argc, char **argv)
 	//BEG Lab2_______________________________________________________
 	//1024, 20priority, nameProcess, 1 arg, char
 	
+	/*
 	uint32 pidA, pidB,pidC;
 	pidA = create(printloop,1024,10,"Process A",1,'A');
 	pidB = create(printloop,1024,10,"Process B",1,'B');
 	pidC = create(printloop,1024,10,"Process C",1,'C');
-	/*pidA = create(printloop,1024,6,"Process A",1,'A');
-	pidB = create(printloop,1024,8,"Process B",1,'B');
-	pidC = create(printloop,1024,10,"Process C",1,'C');*/
+	//pidA = create(printloop,1024,6,"Process A",1,'A');
+	//pidB = create(printloop,1024,8,"Process B",1,'B');
+	//pidC = create(printloop,1024,10,"Process C",1,'C');
 	
 	kprintf("P\r\n");
 	resume(pidA);
@@ -77,13 +78,49 @@ int main(int argc, char **argv)
 	//sleep for 5 seconds
 	//sleepms(5000);
 	sleepms(5000);
-	
+	*/
 	
 	//END Lab2_______________________________________________________
+	
+	//BEG Lab3_______________________________________________________
+	//1024, 20priority, nameProcess, 1 arg, char
+	
+	resume(create(cpuintensive, 1024, 20, "cpuintensiveA", 0));
+	resume(create(cpuintensive, 1024, 20, "cpuintensiveB", 0));
+	resume(create(cpuintensive, 1024, 20, "cpuintensiveC", 0)); 
+    resume(create(cpuintensive, 1024, 20, "cpuintensiveD", 0));
+	resume(create(cpuintensive, 1024, 20, "cpuintensiveE", 0));
+	resume(create(cpuintensive, 1024, 20, "cpuintensiveF", 0));
+	
+	
+	/*
+	uint32 pidA, pidB,pidC;
+	pidA = create(printloop,1024,10,"Process A",1,'A');
+	pidB = create(printloop,1024,10,"Process B",1,'B');
+	pidC = create(printloop,1024,10,"Process C",1,'C');
+	//pidA = create(printloop,1024,6,"Process A",1,'A');
+	//pidB = create(printloop,1024,8,"Process B",1,'B');
+	//pidC = create(printloop,1024,10,"Process C",1,'C');
+	
+	kprintf("P\r\n");
+	resume(pidA);
+	kprintf("P\r\n");
+	resume(pidB);
+	kprintf("P\r\n");
+	resume(pidC);
+	
+	//sleep for 5 seconds
+	//sleepms(5000);
+	sleepms(5000);
+	*/
+	
+	//END Lab3_______________________________________________________
 
-	//comment out while(1);
-	//while (1);
-	resume(create(shell, 8192, 50, "shell", 1, CONSOLE));
+	//comment out following line before, uncommented out lab 3
+	while (1);
+	
+	//Kalena commented out following line for lab3
+	//resume(create(shell, 8192, 50, "shell", 1, CONSOLE));	
 
 	/* Wait for shell to exit and recreate it */
 	recvclr();

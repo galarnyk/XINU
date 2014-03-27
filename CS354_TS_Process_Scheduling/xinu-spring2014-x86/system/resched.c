@@ -23,7 +23,19 @@ void	resched(void)		/* assumes interrupts are disabled	*/
 	ptold = &proctab[currpid];
 
 	if (ptold->prstate == PR_CURR) {  /* process remains running */
+		
+		//lab3 Kalena mod for process starvation Following block of code
+		kalenaList[currpid] += tstab[ptold->prprio].ts_quantum;	
+		ptold->prprio = tstab[ptold->prprio].ts_tqexp;
+		if (kalenaList[currpid] > 300) {
+			if (ptold->prprio > 0 && ptold->prprio < 60) {
+				kalenaList[currpid] = 0;
+				ptold->prprio = 1;
+			}
+		}
+			
 		if (ptold->prprio > firstkey(readylist)) {
+			preempt = tstab[ptold->prprio].ts_quantum;	//lab3 Kalena mod
 			return;
 		}
 
@@ -31,6 +43,18 @@ void	resched(void)		/* assumes interrupts are disabled	*/
 
 		ptold->prstate = PR_READY;
 		insert(currpid, readylist, ptold->prprio);
+	
+	
+	} else if(ptold->prstate == PR_SLEEP) {
+		kalenaList[currpid] += (tstab[ptold->prprio].ts_quantum - preempt);
+		ptold->prprio = tstab[ptold->prprio].ts_slpret;
+		
+		if (kalenaList[currpid] > 300) {
+			if (ptold->prprio > 0 && ptold->prprio < 60) {
+				kalenaList[currpid] = 0;
+				ptold->prprio = 1;
+			}
+		}
 	}
 
 	/* Force context switch to highest priority ready process */
@@ -38,7 +62,8 @@ void	resched(void)		/* assumes interrupts are disabled	*/
 	currpid = dequeue(readylist);
 	ptnew = &proctab[currpid];
 	ptnew->prstate = PR_CURR;
-	preempt = QUANTUM;		/* reset time slice for process	*/
+	//preempt = QUANTUM;		/* reset time slice for process	*/
+	preempt = tstab[ptnew->prprio].ts_quantum;	/* LAB3 ADD */
 	ctxsw(&ptold->prstkptr, &ptnew->prstkptr);
 
 	/* Old process returns here when resumed */

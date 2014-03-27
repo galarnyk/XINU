@@ -23,6 +23,8 @@ struct	memblk	memlist;	/* List of free memory blocks		*/
 /* Added for lab 3: TS Process Scheduling */
 struct ts_ent tstab[KalenaTS] = {{49,59,20},{48,58,40},{47,57,40}}; 
 
+int kalenaList[75] = {0};
+
 
 /* Active system status */
 
@@ -97,8 +99,8 @@ void	nulluser(void)
 	/*  something to run when no other process is ready to execute)	*/
 
 	while (TRUE) {
-		//;		/* do nothing */
-		kprintf("N"); 
+		;		/* do nothing */
+		//kprintf("N"); 
 	}
 }
 
