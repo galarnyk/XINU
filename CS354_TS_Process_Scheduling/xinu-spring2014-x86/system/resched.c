@@ -25,36 +25,37 @@ void	resched(void)		/* assumes interrupts are disabled	*/
 	if (ptold->prstate == PR_CURR) {  /* process remains running */
 		
 		//lab3 Kalena mod for process starvation Following block of code
-		kalenaList[currpid] += tstab[ptold->prprio].ts_quantum;	
-		ptold->prprio = tstab[ptold->prprio].ts_tqexp;
-		if (kalenaList[currpid] > 300) {
-			if (ptold->prprio > 0 && ptold->prprio < 60) {
-				kalenaList[currpid] = 0;
-				ptold->prprio = 1;
-			}
-		}
-			
+//		kalenaList[currpid] += tstab[ptold->prprio].ts_quantum;	
+		ptold->prprio = tstab[ptold->prprio].ts_tqexp;				//ADD
+		
+//		if (kalenaList[currpid] > 300) {					
+//			if (ptold->prprio > 0 && ptold->prprio < 60) {
+//				kalenaList[currpid] = 0;
+//				ptold->prprio = 1;
+//			}
+//		}
+		
+		//Reset TS to right quantum
 		if (ptold->prprio > firstkey(readylist)) {
 			preempt = tstab[ptold->prprio].ts_quantum;	//lab3 Kalena mod
 			return;
 		}
 
 		/* Old process will no longer remain current */
-
 		ptold->prstate = PR_READY;
 		insert(currpid, readylist, ptold->prprio);
 	
 	
 	} else if(ptold->prstate == PR_SLEEP) {
-		kalenaList[currpid] += (tstab[ptold->prprio].ts_quantum - preempt);
-		ptold->prprio = tstab[ptold->prprio].ts_slpret;
+//		kalenaList[currpid] += (tstab[ptold->prprio].ts_quantum - preempt);
+		ptold->prprio = tstab[ptold->prprio].ts_slpret;				//ADD
 		
-		if (kalenaList[currpid] > 300) {
-			if (ptold->prprio > 0 && ptold->prprio < 60) {
-				kalenaList[currpid] = 0;
-				ptold->prprio = 1;
-			}
-		}
+//		if (kalenaList[currpid] > 300) {
+//			if (ptold->prprio > 0 && ptold->prprio < 60) {
+//				kalenaList[currpid] = 0;
+//				ptold->prprio = 1;
+//			}
+//		}
 	}
 
 	/* Force context switch to highest priority ready process */

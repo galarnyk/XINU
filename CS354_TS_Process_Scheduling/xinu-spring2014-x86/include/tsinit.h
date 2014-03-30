@@ -3,7 +3,7 @@
 #ifndef _TSINIT
 #define _TSINIT
 
-#define KalenaTS 3
+#define KalenaTS 60
 
 typedef struct ts_ent {
   int ts_tqexp;         // new priority: CPU-intensive (time quantum expired)
