@@ -77,10 +77,14 @@ extern	void	_doprnt(char *, va_list, int (*)(int), int);
  */
 syscall kprintf(char *fmt, ...)
 {
-    va_list ap;
+	int mask;			//ADDED TO DISABLE OTHER INTERUPT AND CHANGE TO UNIT SYSTEM CALL
+    mask = disable();	//ADDED TO DISABLE OTHER INTERUPT AND CHANGE TO UNIT SYSTEM CALL
+	va_list ap;
 
     va_start(ap, fmt);
     _doprnt(fmt, ap, (int (*)(int))kputc, (int)&devtab[CONSOLE]);
     va_end(ap);
+	
+	restore(mask);		//ADDED TO DISABLE OTHER INTERUPT AND CHANGE TO UNIT SYSTEM CALL
     return OK;
 }
