@@ -11,6 +11,6 @@ void iointensive()
 		// single call to sleepms which changes degree to which sleepms prone to blocking and voluntarily relinquishing the CPU
 		sleepms(1000);
 
-		kprintf("iointensive() pid: %d	i: %d	prprio: %d	TS remain: %d\r\n", currpid, i, proctab[currpid].prprio, preempt);
+		kprintf("\r\niointensive() pid: %d	i: %d	prprio: %d	TS remain: %d", currpid, i, proctab[currpid].prprio, preempt);
 	}
 }

@@ -18,6 +18,6 @@ void cpuintensive()
 		}
 		// using kprintf print the pid followed the outer loop count i,
 		// the process's priority and remaining time slice (preempt)
-		kprintf("\r\ncpuintensive() pid: %d	i: %d	prprio: %d	TS remain: %d\r\n", currpid, i, proctab[currpid].prprio, preempt);
+		kprintf("\r\ncpuintensive() pid: %d	i: %d	prprio: %d	TS remain: %d", currpid, i, proctab[currpid].prprio, preempt);
 	}
 }
