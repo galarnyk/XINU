@@ -24,6 +24,8 @@ status	insert(
 		curr = queuetab[curr].qnext;
 	}
 
+	
+	///q=ready
 	/* insert process between curr node and previous node */
 
 	prev = queuetab[curr].qprev;	/* get index of previous node	*/

@@ -10,7 +10,5 @@ extern int kalenaList[];
 
 void cpuintensive();
 void iointensive();
-//void rtprocessnoslp();
-//void rtprocessyesslp();
-//void hybridprocess();
+void hybridprocess();
 #endif

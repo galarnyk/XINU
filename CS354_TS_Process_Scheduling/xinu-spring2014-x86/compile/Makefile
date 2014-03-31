@@ -71,8 +71,8 @@ SYSTEM_CFILES =								\
 	unsleep.c	userret.c	wait.c		wakeup.c	\
 	write.c		xdone.c		yield.c		evec.c 	\
 	stacktrace.c	printsegaddress.c	printprocstks.c \
-	myprogA.c	printloop.c 	cpuintensive.c 	\
-	iointensive.c 
+	myprogA.c	printloop.c \
+	cpuintensive.c 	iointensive.c hybridprocess.c
 	
 
 SYSTEM_SFULL = ${SYSTEM_SFILES:%=../system/%}

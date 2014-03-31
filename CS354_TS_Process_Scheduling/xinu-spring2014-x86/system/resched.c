@@ -28,7 +28,7 @@ void	resched(void)		/* assumes interrupts are disabled	*/
 //		kalenaList[currpid] += tstab[ptold->prprio].ts_quantum;	
 		ptold->prprio = tstab[ptold->prprio].ts_tqexp;				//ADD
 		
-//		if (kalenaList[currpid] > 300) {					
+//		if (kalenaList[currpid] > 200) {					
 //			if (ptold->prprio > 0 && ptold->prprio < 60) {
 //				kalenaList[currpid] = 0;
 //				ptold->prprio = 1;
@@ -50,7 +50,7 @@ void	resched(void)		/* assumes interrupts are disabled	*/
 //		kalenaList[currpid] += (tstab[ptold->prprio].ts_quantum - preempt);
 		ptold->prprio = tstab[ptold->prprio].ts_slpret;				//ADD
 		
-//		if (kalenaList[currpid] > 300) {
+//		if (kalenaList[currpid] > 200) {
 //			if (ptold->prprio > 0 && ptold->prprio < 60) {
 //				kalenaList[currpid] = 0;
 //				ptold->prprio = 1;

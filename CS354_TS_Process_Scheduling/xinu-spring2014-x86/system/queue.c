@@ -44,6 +44,8 @@ pid32	dequeue(
 	} else if (isempty(q)) {
 		return EMPTY;
 	}
+	
+	//q readyl && !isempty(q)
 
 	pid = getfirst(q);
 	queuetab[pid].qprev = EMPTY;

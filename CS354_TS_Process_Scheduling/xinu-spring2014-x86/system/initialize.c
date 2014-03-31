@@ -20,10 +20,20 @@ struct	procent	proctab[NPROC];	/* Process table			*/
 struct	sentry	semtab[NSEM];	/* Semaphore table			*/
 struct	memblk	memlist;	/* List of free memory blocks		*/
 
+/* Active system status */
+
+int	prcount;		/* Total number of live processes	*/
+pid32	currpid;		/* ID of currently executing process	*/
+
+/* Memory bounds set by start.S */
+
+void	*minheap;		/* start of heap			*/
+void	*maxheap;		/* highest valid memory address		*/
+
 /* Added for lab 3: TS Process Scheduling */
-struct ts_ent tstab[KalenaTS] = {{0,50,200},{0,50,200},{0,50,200},{0,50,200},{0,50,200}, \
-								 {0,50,200},{0,50,200},{0,50,200},{0,50,200},{0,50,200}, \
-								 {0,51,160},{1,51,160},{2,51,160},{3,51,160},{4,51,160}, \
+struct ts_ent tstab[KalenaTS] = {{1,50,200},{1,50,200},{1,50,200},{1,50,200},{1,50,200}, \
+								 {1,50,200},{1,50,200},{1,50,200},{1,50,200},{1,50,200}, \
+								 {1,51,160},{1,51,160},{2,51,160},{3,51,160},{4,51,160}, \
 								 {5,51,160},{6,51,160},{7,51,160},{8,51,160},{9,51,160}, \
 								 {10,52,120},{11,52,120},{12,52,120},{13,52,120},{14,52,120}, \
 								 {15,52,120},{16,52,120},{17,52,120},{18,52,120},{19,52,120}, \
@@ -36,16 +46,6 @@ struct ts_ent tstab[KalenaTS] = {{0,50,200},{0,50,200},{0,50,200},{0,50,200},{0,
 
 int kalenaList[60] = {0};
 
-
-/* Active system status */
-
-int	prcount;		/* Total number of live processes	*/
-pid32	currpid;		/* ID of currently executing process	*/
-
-/* Memory bounds set by start.S */
-
-void	*minheap;		/* start of heap			*/
-void	*maxheap;		/* highest valid memory address		*/
 
 /*------------------------------------------------------------------------
  * nulluser - initialize the system and become the null process

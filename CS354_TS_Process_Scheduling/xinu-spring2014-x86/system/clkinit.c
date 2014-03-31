@@ -5,6 +5,7 @@
 #include <clock.h>
 
 uint32	clktime;		/* seconds since boot			*/
+uint32 	clktimeaccu; 	/* Keeps track of total time elapsed in granularity of 1 msec */
 uint32	ctr1000 = 0;		/* milliseconds since boot		*/
 qid16	sleepq;			/* queue of sleeping processes		*/
 int32	slnempty;		/* zero if the sleep queue is empty;	*/

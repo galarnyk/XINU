@@ -14,6 +14,30 @@ void myprogA();*/
 
 //incorrect: long host2netl_asm(long);
 
+void test1() 
+{
+	resume(create(cpuintensive, 1024, 20, "cpuintensiveA", 0));
+	resume(create(cpuintensive, 1024, 20, "cpuintensiveB", 0));
+	resume(create(cpuintensive, 1024, 20, "cpuintensiveC", 0)); 
+    resume(create(cpuintensive, 1024, 20, "cpuintensiveD", 0));
+}
+
+void test2() 
+{
+	resume(create(iointensive, 1024, 20, "iointensiveA", 0));
+	resume(create(iointensive, 1024, 20, "iointensiveB", 0));
+	resume(create(iointensive, 1024, 20, "iointensiveC", 0));
+    resume(create(iointensive, 1024, 20, "iointensiveD", 0));
+}
+
+void test4() 
+{
+    resume( create(cpuintensive, 1024, 20, "cpuintensiveA", 0));
+	resume( create(cpuintensive, 1024, 20, "cpuintensiveB", 0));
+	resume( create(cpuintensive, 1024, 20, "cpuintensiveC", 0));
+	resume( create(hybridprocess, 1024, 20, "hybridprocess", 0));
+}
+
 int main(int argc, char **argv)
 {
 	uint32 retval;
@@ -85,23 +109,28 @@ int main(int argc, char **argv)
 	//BEG Lab3_______________________________________________________
 	//1024, 20priority, nameProcess, 1 arg, char
 	
+	test1();
+	sleepms(5000);
+	test2();
+	sleepms(5000);
+	
+	test4();
+//	resume(create(cpuintensive, 1024, 20, "cpuintensiveA", 0));
+//	resume(create(cpuintensive, 1024, 20, "cpuintensiveB", 0));
+//	resume(create(cpuintensive, 1024, 20, "cpuintensiveC", 0)); 
+//    resume(create(cpuintensive, 1024, 20, "cpuintensiveD", 0));
+	//resume(create(cpuintensive, 1024, 20, "cpuintensiveE", 0));
+	//resume(create(cpuintensive, 1024, 20, "cpuintensiveF", 0));
+	
+	
 	/*
-	resume(create(cpuintensive, 1024, 20, "cpuintensiveA", 0));
-	resume(create(cpuintensive, 1024, 20, "cpuintensiveB", 0));
-	resume(create(cpuintensive, 1024, 20, "cpuintensiveC", 0)); 
-    resume(create(cpuintensive, 1024, 20, "cpuintensiveD", 0));
-	resume(create(cpuintensive, 1024, 20, "cpuintensiveE", 0));
-	resume(create(cpuintensive, 1024, 20, "cpuintensiveF", 0));
-	*/
-	
-	
 	resume(create(iointensive, 1024, 20, "iointensiveA", 0));
 	resume(create(iointensive, 1024, 20, "iointensiveB", 0));
 	resume(create(iointensive, 1024, 20, "iointensiveC", 0));
     resume(create(iointensive, 1024, 20, "iointensiveD", 0));
 	resume(create(iointensive, 1024, 20, "iointensiveE", 0));
 	resume(create(iointensive, 1024, 20, "iointensiveF", 0));
-	
+	*/
 	
 	/*
 	uint32 pidA, pidB,pidC;
